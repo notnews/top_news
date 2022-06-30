@@ -43,6 +43,10 @@ jobs:
         working-directory: .
         run: |
           python lat.py
+      - name: update usat urls
+        working-directory: .
+        run: |
+          python usat.py
       -
         name: "Commit and push if it changed"
         run: |-
