@@ -1,24 +1,14 @@
 import json
-import newspaper
+import feedparser
 
-npr_data = []
+with open("npr_urls.json", "r") as npr_file:
+    npr_json = json.load(npr_file)
 
-npr_stories = newspaper.build("https://www.npr.org/")
+feed = feedparser.parse("https://feeds.npr.org/1001/rss.xml")
 
-for article in npr_stories.articles[1:-1]:
-    article.download()
-    article.parse()
-    data = {}
-    if article.publish_date:
-        data['year'] = article.publish_date.year
-        data['month'] = article.publish_date.month
-        data['date'] = article.publish_date.day
-    data['url'] = article.url
-    data['headline'] = article.title
-    data['byline'] = article.authors
-    data['subhead'] = article.meta_data['description']
-    data['text'] = article.text
-    npr_data.append(data)
+for article in feed.entries:
+    if not article['link'] in npr_json:
+        npr_json.append(article['link'])
 
-with open("npr_stories.json", "w") as f:
-    f.write(json.dumps(npr_data))
+with open("npr_urls.json", "w") as f:
+    f.write(json.dumps(npr_json))
