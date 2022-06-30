@@ -31,6 +31,10 @@ jobs:
         working-directory: .
         run: |
           python npr.py
+      - name: update wapo urls
+        working-directory: .
+        run: |
+          python wapo.py
       -
         name: "Commit and push if it changed"
         run: |-
