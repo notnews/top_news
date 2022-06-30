@@ -35,6 +35,14 @@ jobs:
         working-directory: .
         run: |
           python wapo.py
+      - name: update propublica urls
+        working-directory: .
+        run: |
+          python propub.py
+      - name: update lat urls
+        working-directory: .
+        run: |
+          python lat.py
       -
         name: "Commit and push if it changed"
         run: |-
