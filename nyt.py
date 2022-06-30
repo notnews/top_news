@@ -1,27 +1,16 @@
 import json
-import newspaper
+import feedparser
 
-nyt_data = []
+with open("nyt_urls.json", "r") as nyt_file:
+    nyt_json = json.load(nyt_file)
 
-nyt_stories = newspaper.build("https://www.nytimes.com/")
+feeds = ["https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/politics/rss.xml", "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml", "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/us/rss.xml", "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/world/rss.xml", "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/business/rss.xml", "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/technology/rss.xml"]
 
-for article in nyt_stories.articles[1:-1]:
-    article.download()
-    article.parse()
-    # skip Chinese versions
-    if 'cn.nytimes.com' in article.url:
-        continue
-    data = {}
-    if article.publish_date:
-        data['year'] = article.publish_date.year
-        data['month'] = article.publish_date.month
-        data['date'] = article.publish_date.day
-    data['url'] = article.url
-    data['headline'] = article.title
-    data['byline'] = article.authors
-    data['subhead'] = article.meta_data['description']
-    data['text'] = article.text
-    nyt_data.append(data)
+for url in feeds:
+    feed = feedparser.parse(url)
+    for article in feed.entries:
+        if not article['link'] in nyt_json:
+            nyt_json.append(article['link'])
 
-with open("nyt_stories.json", "w") as f:
-    f.write(json.dumps(nyt_data))
+with open("nyt_urls.json", "w") as f:
+    f.write(json.dumps(nyt_json))
