@@ -47,6 +47,18 @@ jobs:
         working-directory: .
         run: |
           python usat.py
+      - name: update politico urls
+        working-directory: .
+        run: |
+          python politico.py
+      - name: update cbs urls
+        working-directory: .
+        run: |
+          python cbs.py
+      - name: update nbc urls
+        working-directory: .
+        run: |
+          python nbc.py
       -
         name: "Commit and push if it changed"
         run: |-
