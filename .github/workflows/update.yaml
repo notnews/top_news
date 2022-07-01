@@ -59,6 +59,10 @@ jobs:
         working-directory: .
         run: |
           python nbc.py
+      - name: update abc urls
+        working-directory: .
+        run: |
+          python abc.py
       -
         name: "Commit and push if it changed"
         run: |-
