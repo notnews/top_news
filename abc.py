@@ -6,7 +6,15 @@ with open("abc_urls.json", "r") as abc_file:
     abc_json = json.load(abc_file)
 
 feeds = [
-    "https://abcnews.go.com/abcnews/topstories"
+    "https://abcnews.go.com/abcnews/topstories",
+    "https://abcnews.go.com/abcnews/internationalheadlines",
+    "https://abcnews.go.com/abcnews/usheadlines",
+    "https://abcnews.go.com/abcnews/moneyheadlines",
+    "https://abcnews.go.com/abcnews/healthheadlines",
+    "https://abcnews.go.com/abcnews/sportsheadlines",
+    "https://abcnews.go.com/abcnews/entertainmentheadlines",
+    "https://abcnews.go.com/abcnews/technologyheadlines",
+    "https://abcnews.go.com/abcnews/travelheadlines"
     ]
 
 for url in feeds:
