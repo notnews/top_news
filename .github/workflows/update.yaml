@@ -1,78 +1,78 @@
-# name: Scrape latest data
+name: Scrape latest data
 #
-# on:
-#   push:
-#     push:
-#   schedule:
-#     - cron: "12 * * * *"
-#   workflow_dispatch:
+on:
+  push:
+    push:
+  schedule:
+    - cron: "12 * * * *"
+  workflow_dispatch:
 #
-# jobs:
-#   scheduled:
-#     runs-on: ubuntu-latest
-#     steps:
-#       -
-#         name: Set up Python
-#         uses: actions/setup-python@v2
-#         with:
-#           python-version: '3.x'
-#       -
-#         name: "Check out this repo"
-#         uses: actions/checkout@v2
-#       - name: Install dependencies
-#         run: |
-#           python -m pip install --upgrade pip
-#           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-#       - name: update nyt urls
-#         working-directory: .
-#         run: |
-#           python nyt.py
-#       - name: update npr urls
-#         working-directory: .
-#         run: |
-#           python npr.py
-#       - name: update wapo urls
-#         working-directory: .
-#         run: |
-#           python wapo.py
-#       - name: update propublica urls
-#         working-directory: .
-#         run: |
-#           python propub.py
-#       - name: update lat urls
-#         working-directory: .
-#         run: |
-#           python lat.py
-#       - name: update usat urls
-#         working-directory: .
-#         run: |
-#           python usat.py
-#       - name: update politico urls
-#         working-directory: .
-#         run: |
-#           python politico.py
-#       - name: update cbs urls
-#         working-directory: .
-#         run: |
-#           python cbs.py
-#       - name: update nbc urls
-#         working-directory: .
-#         run: |
-#           python nbc.py
-#       - name: update abc urls
-#         working-directory: .
-#         run: |
-#           python abc.py
-#       - name: update cnn urls
-#         working-directory: .
-#         run: |
-#           python cnn.py
-#       -
-#         name: "Commit and push if it changed"
-#         run: |-
-#             git config user.name "Automated"
-#             git config user.email "actions@users.noreply.github.com"
-#             git add -A
-#             timestamp=$(date -u)
-#             git commit -m "Latest data: ${timestamp}" || exit 0
-#             git push
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      -
+        name: "Check out this repo"
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: update nyt urls
+        working-directory: .
+        run: |
+          python nyt.py
+      - name: update npr urls
+        working-directory: .
+        run: |
+          python npr.py
+      - name: update wapo urls
+        working-directory: .
+        run: |
+          python wapo.py
+      - name: update propublica urls
+        working-directory: .
+        run: |
+          python propub.py
+      - name: update lat urls
+        working-directory: .
+        run: |
+          python lat.py
+      - name: update usat urls
+        working-directory: .
+        run: |
+          python usat.py
+      - name: update politico urls
+        working-directory: .
+        run: |
+          python politico.py
+      - name: update cbs urls
+        working-directory: .
+        run: |
+          python cbs.py
+      - name: update nbc urls
+        working-directory: .
+        run: |
+          python nbc.py
+      - name: update abc urls
+        working-directory: .
+        run: |
+          python abc.py
+      - name: update cnn urls
+        working-directory: .
+        run: |
+          python cnn.py
+      -
+        name: "Commit and push if it changed"
+        run: |-
+            git config user.name "Automated"
+            git config user.email "actions@users.noreply.github.com"
+            git add -A
+            timestamp=$(date -u)
+            git commit -m "Latest data: ${timestamp}" || exit 0
+            git push
