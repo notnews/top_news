@@ -17,6 +17,8 @@ filelock==3.8.0; python_version >= '3.7'
 idna==3.4; python_version >= '3.5'
 jieba3k==0.35.1
 joblib==1.2.0; python_version >= '3.7'
+libxml2-dev
+libxslt
 lxml==4.9.2
 newspaper3k==0.2.8
 nltk==3.7; python_version >= '3.7'
