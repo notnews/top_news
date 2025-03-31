@@ -44,15 +44,30 @@ class ArticleFinder:
     
     def extract_slug(self, url):
         """Extract the article slug from RSS feed URLs"""
-        # Look for the pattern after 'usatoday-newstopstories~'
-        match = re.search(r'usatoday-newstopstories~(.*?)(?:/|$)', url)
+        # Try multiple patterns to extract slugs from different URL formats
 
+        # Pattern for specific sections (newstopstories, techtopstories, etc.)
+        match = re.search(r'usatoday-(\w+)~(.*?)(?:/|$)', url)
         if match:
-            # Extract the slug
-            slug = match.group(1)
-            # Convert to a more search-friendly format
+            slug = match.group(2)
             search_term = slug.replace('-', ' ')
             return slug, search_term
+
+        # Pattern for nation-topstories format
+        match = re.search(r'usatodaycom(\w+)-topstories~(.*?)(?:/|$)', url)
+        if match:
+            slug = match.group(2)
+            search_term = slug.replace('-', ' ')
+            return slug, search_term
+
+        # Last resort: Extract the last segment of the URL path
+        parts = url.rstrip('/').split('/')
+        if parts and len(parts) > 0:
+            last_segment = parts[-1]
+            # Check if it looks like a slug (contains dashes)
+            if '-' in last_segment and not last_segment.startswith('~'):
+                search_term = last_segment.replace('-', ' ')
+                return last_segment, search_term
 
         return None, None
     
@@ -344,7 +359,7 @@ if __name__ == "__main__":
     SEARCH_ENGINE_ID = ""
 
     with open('usat_urls.json', 'r', encoding='utf-8') as f:
-        urls = json.load(f)[11:100]
+        urls = json.load(f)[501:9000]
         
     finder = ArticleFinder(API_KEY, SEARCH_ENGINE_ID)
         
