@@ -12,4 +12,4 @@ As of March, 2025, we have about 700k unique URLs.
   * The June 2023 full-text dump is here: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ZNAKK6
   * The March-2025 dump is being posted. CNN, LA Times, and NBC are up.
 
-3. Newspaper3k can't parse USAT URLs. I use custom Google search to dig up the URLs and get the data. The script is [here](https://github.com/notnews/top_news/blob/main/agg/usat_downloader.py). 
+3. Newspaper3k can't parse USAT, Politico, and ABC URLs. I use custom Google search to dig up the URLs and get the data. The script is [here](https://github.com/notnews/top_news/blob/main/agg/usat_downloader.py). 
