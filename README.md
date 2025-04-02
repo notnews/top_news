@@ -26,6 +26,31 @@ from itertools import islice
 db = Database("../cbs.db")
 print("Tables:", db.table_names())
 
+Tables: ['../cbs_stories']
+```
+
+Table Schema
+
+```
+schema = db[table_name].schema
+print("Schema:\n")
+print(schema)
+
+Schema:
+
+CREATE TABLE [../cbs_stories] (
+   [url] TEXT PRIMARY KEY,
+   [source] TEXT,
+   [publish_date] TEXT,
+   [title] TEXT,
+   [authors] TEXT,
+   [text] TEXT,
+   [extraction_date] TEXT,
+   [domain] TEXT
+)
+```
+
+```
 db_file = "../cbs.db"
 table_name = "../cbs_stories" # yup! it has the ../
 
