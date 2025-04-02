@@ -13,3 +13,27 @@ As of March 2025, we have about 700k unique URLs.
   * The March 2025 dump (minus the exceptions listed below) is in the same place.
 
 3. Newspaper3k can't parse USAT, Politico, and ABC URLs. I use custom Google search to dig up the URLs and get the data. The script is [here](https://github.com/notnews/top_news/blob/main/agg/usat_downloader.py). 
+
+### Code
+
+To explore the DB, some code ...
+
+```python
+
+from sqlite_utils import Database
+from itertools import islice
+
+db = Database("../cbs.db")
+print("Tables:", db.table_names())
+
+db_file = "../cbs.db"
+table_name = "../cbs_stories" # yup! it has the ../
+
+db = Database(db_file)
+
+for row in islice(db[table_name].rows, 5):
+    print(f"URL: {row['url']}")
+    print(f"Title: {row['title']}")
+    print(f"Date: {row['publish_date']}")
+    print(f"Text preview: {row['text'][:100]}...\n")
+```
