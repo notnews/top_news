@@ -16,7 +16,7 @@ As of March 2025, we have about 700k unique URLs.
 
 ### Get Started With Exploring the Data
 
-To explore the DB, some code ...
+To explore the DB, some code ([Jupyter NB](https://github.com/notnews/top_news/blob/main/agg/tester.ipynb)) ...
 
 ```python
 
