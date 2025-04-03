@@ -14,7 +14,7 @@ As of March 2025, we have about 700k unique URLs.
 
 3. Newspaper3k can't parse USAT, Politico, and ABC URLs. I use custom Google search to dig up the URLs and get the data. The script is [here](https://github.com/notnews/top_news/blob/main/agg/usat_downloader.py). 
 
-### Code
+### Get Started With Exploring the Data
 
 To explore the DB, some code ...
 
@@ -31,7 +31,7 @@ print("Tables:", db.table_names())
 Tables: ['../cbs_stories']
 ```
 
-Table Schema
+#### Table Schema
 
 ```python
 schema = db[table_name].schema
@@ -65,4 +65,20 @@ for row in islice(db[table_name].rows, 5):
     print(f"Title: {row['title']}")
     print(f"Date: {row['publish_date']}")
     print(f"Text preview: {row['text'][:100]}...\n")
+```
+
+#### Exporting to Pandas
+
+```python
+
+# Option 1: Convert all data to a DataFrame
+df = pd.DataFrame(list(db[table_name].rows))
+
+# Option 2: If the table is very large, you might want to limit rows
+# df = pd.DataFrame(list(islice(db[table_name].rows, 1000)))  # first 1000 rows
+
+# Print info about the DataFrame
+print(f"DataFrame shape: {df.shape}")
+print(f"Columns: {df.columns.tolist()}")
+print(df.head())
 ```
