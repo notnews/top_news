@@ -82,3 +82,11 @@ print(f"DataFrame shape: {df.shape}")
 print(f"Columns: {df.columns.tolist()}")
 print(df.head())
 ```
+
+## 🔗 Adjacent Repositories
+
+- [notnews/good_nyt](https://github.com/notnews/good_nyt) — Patterns in NYT production from 1987 to 2007
+- [notnews/uk_not_news](https://github.com/notnews/uk_not_news) — Not News: Provision of Apolitical News in the British News Media
+- [notnews/hard_news](https://github.com/notnews/hard_news) — The Softening of Network Television News
+- [notnews/stanford_tv_news](https://github.com/notnews/stanford_tv_news) — Stanford Cable TV News Dataset
+- [notnews/top10](https://github.com/notnews/top10) — Top 10 News! Scraping and Parsing Home pages and Top 10 Lists on News Sites
