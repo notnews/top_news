@@ -89,4 +89,4 @@ print(df.head())
 - [notnews/uk_not_news](https://github.com/notnews/uk_not_news) — Not News: Provision of Apolitical News in the British News Media
 - [notnews/hard_news](https://github.com/notnews/hard_news) — The Softening of Network Television News
 - [notnews/stanford_tv_news](https://github.com/notnews/stanford_tv_news) — Stanford Cable TV News Dataset
-- [notnews/top10](https://github.com/notnews/top10) — Top 10 News! Scraping and Parsing Home pages and Top 10 Lists on News Sites
+- [notnews/fox_news_transcripts](https://github.com/notnews/fox_news_transcripts) — Fox News Transcripts 2003--2025
