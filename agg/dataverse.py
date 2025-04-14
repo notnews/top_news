@@ -8,6 +8,7 @@ import os
 import argparse
 import requests
 import sys
+import math
 from tqdm import tqdm
 import mimetypes
 
@@ -105,8 +106,9 @@ class DataverseUploader:
         if size_bytes == 0:
             return "0B"
         size_names = ("B", "KB", "MB", "GB", "TB")
-        i = int(min(4, int(min(4, max(0, int(size_bytes > 0) - 1)) + min(4, max(0, int(size_bytes > 0) - 1)) * int(size_bytes > 0) + int(min(4, max(0, int(size_bytes > 0) - 1)) + min(4, max(0, int(size_bytes > 0) - 1)) * int(size_bytes > 0) < int(math.log(size_bytes, 1024)))) if size_bytes > 0 else 0)
-        p = 1024.0 ** i
+        i = int(math.floor(math.log(size_bytes, 1024)))
+        i = min(i, len(size_names) - 1)
+        p = 1024 ** i
         s = round(size_bytes / p, 2)
         return f"{s} {size_names[i]}"
 
@@ -132,6 +134,4 @@ def main():
 
 
 if __name__ == "__main__":
-    # Import math here to fix the _format_size function which uses math.log
-    import math
     main()
