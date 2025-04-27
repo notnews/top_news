@@ -86,7 +86,7 @@ print(df.head())
 ## 🔗 Adjacent Repositories
 
 - [notnews/good_nyt](https://github.com/notnews/good_nyt) — Patterns in NYT production from 1987 to 2007
-- [notnews/uk_not_news](https://github.com/notnews/uk_not_news) — Not News: Provision of Apolitical News in the British News Media
-- [notnews/hard_news](https://github.com/notnews/hard_news) — The Softening of Network Television News
 - [notnews/fox_news_transcripts](https://github.com/notnews/fox_news_transcripts) — Fox News Transcripts 2003--2025
+- [notnews/uk_not_news](https://github.com/notnews/uk_not_news) — Not News: Provision of Apolitical News in the British News Media
 - [notnews/nbc_transcripts](https://github.com/notnews/nbc_transcripts) — NBC transcripts 2011--2014
+- [notnews/hard_news](https://github.com/notnews/hard_news) — The Softening of Network Television News
