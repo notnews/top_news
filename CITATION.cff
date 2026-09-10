@@ -1,23 +1,23 @@
 cff-version: 1.2.0
-message: "If you use these data or scripts, please cite them as below."
-title: "Top News URLs"
+message: Cite Derek Willis and Gaurav Sood for this collection. For Dataverse data, also include the release version
+  and DOI.
+title: 'Top News: URLs from News Feeds of Major National News Sites'
 type: dataset
-version: "1.0.0"
-date-released: 2025-03-16
 authors:
-  - family-names: "Sood"
-    given-names: "Gaurav"
-    email: "gsood07@gmail.com"
-  - family-names: "Laohaprapanon"
-    given-names: "Suriyan"
-repository-code: "https://github.com/notnews/top_news"
+- family-names: Willis
+  given-names: Derek
+- family-names: Sood
+  given-names: Gaurav
+  email: contact@gsood.com
+repository-code: https://github.com/notnews/top_news
 identifiers:
-  - type: doi
-    value: "10.7910/DVN/ZNAKK6"
-    description: "Parsed transcripts on Harvard Dataverse (restricted access)."
+- type: doi
+  value: 10.7910/DVN/ZNAKK6
+  description: Historical story URL and full-text releases on Harvard Dataverse.
 license: CC-BY-4.0
 keywords:
-  - CNN
-  - transcripts
-  - cable news
-  - text corpus
+- news
+- URLs
+- RSS
+- news sitemaps
+- journalism

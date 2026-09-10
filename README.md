@@ -4,15 +4,19 @@
 [![Data](https://img.shields.io/badge/data-Dataverse-blue)](https://doi.org/10.7910/DVN/ZNAKK6)
 [![Code license](https://img.shields.io/badge/code-MIT-green)](LICENSE)
 
-An hourly collector of news URLs from eleven sources. URL arrays stay in Git, with one URL per line so later collection diffs show additions. Full-text Dataverse releases are historical artifacts.
+An hourly collector of news URLs from fifteen sources. URL arrays stay in Git, with one URL per line so later collection diffs show additions. Full-text Dataverse releases are historical artifacts.
 
 ## Data
 
-| File | URLs at cleanup baseline (2026-09-10) |
+| File | URLs on 2026-09-10 |
 |---|---:|
+| `aljazeera_urls.json` | 25 |
 | `abc_urls.json` | 239,290 |
+| `bbc_urls.json` | 22 |
 | `cbs_urls.json` | 158,285 |
 | `cnn_urls.json` | 39,185 |
+| `dw_urls.json` | 137 |
+| `guardian_urls.json` | 132 |
 | `lat_urls.json` | 75,121 |
 | `nbc_urls.json` | 98,135 |
 | `npr_urls.json` | 67,363 |
@@ -38,9 +42,11 @@ New URL normalization retains scheme, host, and path, stripping query and fragme
 
 ## Coverage and known gaps
 
-CNN's old feed stopped updating around 2024-07-28; USA Today's around 2023-08-31, per the cleanup handoff. Those gaps run to cleanup and are not backfilled. Their replacements are news sitemaps; a sitemap only exposes a recent window. The other sources remain RSS.
+BBC News (US and Canada), The Guardian (US edition), Al Jazeera, and Deutsche Welle collection starts on 2026-09-10. Their [BBC RSS feed](https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml) and [Guardian RSS feed](https://www.theguardian.com/us/rss) provide a recent window; earlier URLs have not been backfilled. Use `--site bbc` or `--site guardian` to update either source individually. Al Jazeera uses its [global RSS feed](https://www.aljazeera.com/xml/rss/all.xml), and Deutsche Welle uses its [English-language RSS feed](https://rss.dw.com/rdf/rss-en-all); their site codes are `aljazeera` and `dw`.
 
-Feed failures and empty/malformed documents are logged. A site succeeds if at least one configured feed succeeds; the command exits nonzero only if every requested site fails. A zero-addition success can simply mean all URLs were already present. The corpus grows continuously; the table is a dated baseline.
+CNN's old feed stopped updating around 2024-07-28; USA Today's around 2023-08-31, according to the historical collection notes. Those gaps extend to 2026-09-10 and have not been backfilled. Their replacements are news sitemaps; a sitemap only exposes a recent window. The other sources remain RSS.
+
+Feed failures and empty/malformed documents are logged. A site succeeds if at least one configured feed succeeds; the command exits nonzero only if every requested site fails. A zero-addition success can simply mean all URLs were already present. The corpus grows continuously; the table reports counts on the stated date.
 
 Obsolete full-text extraction and Google-search notebooks were removed. An exposed Google API credential was removed from branch history and must still be revoked by its owner; old clones and cached copies may retain it.
 
@@ -48,12 +54,12 @@ Obsolete full-text extraction and Google-search notebooks were removed. An expos
 
 | Period | Method |
 |---|---|
-| 2022–cleanup | Eleven independent RSS scripts; scheduled commits of JSON arrays |
-| Cleanup onward | Shared collector, RSS plus CNN/USA Today news sitemaps, atomic JSON replacement |
+| 2022–2026-09-09 | Eleven independent RSS scripts; scheduled commits of JSON arrays |
+| From 2026-09-10 | Shared collector, RSS plus CNN/USA Today news sitemaps, atomic JSON replacement |
 
-The hourly workflow and package change together. Updates are serialized, stage only URL arrays, and rebase before pushing. Pull-request CI ignores URL-only changes; scheduled CI still checks dependency drift.
+Hourly updates are serialized, stage only URL arrays, and rebase before pushing. Pull-request CI ignores URL-only changes; scheduled CI still checks dependency drift.
 
-The pre-cleanup implementation is preserved at [44d7cfd9d7dbb4e5b26e7efcc0db0065bb6130c5](https://github.com/notnews/top_news/tree/44d7cfd9d7dbb4e5b26e7efcc0db0065bb6130c5). The collector updates the root `*_urls.json` arrays atomically; reruns deduplicate against the saved URLs. Pure parsers read saved responses without accessing the network. Fixture provenance is in [tests/fixtures/SOURCES.md](tests/fixtures/SOURCES.md).
+The historical implementation is preserved at [44d7cfd9d7dbb4e5b26e7efcc0db0065bb6130c5](https://github.com/notnews/top_news/tree/44d7cfd9d7dbb4e5b26e7efcc0db0065bb6130c5). The collector updates the root `*_urls.json` arrays atomically; reruns deduplicate against the saved URLs. Pure parsers read saved responses without accessing the network. Fixture provenance is in [tests/fixtures/SOURCES.md](tests/fixtures/SOURCES.md).
 
 ## Usage
 
@@ -102,7 +108,7 @@ Use [CITATION.cff](CITATION.cff) and cite the relevant [Dataverse release](https
 
 ## License
 
-Code is [MIT licensed](LICENSE). URL data are CC BY 4.0, as specified by the original citation metadata; see [the license terms](https://creativecommons.org/licenses/by/4.0/). Article text retains its owners' rights.
+Code is [MIT licensed](LICENSE). The URL collection in this repository is CC BY 4.0, as specified by its original citation metadata; see [the license terms](https://creativecommons.org/licenses/by/4.0/). The [Dataverse DOI record](https://api.datacite.org/dois/10.7910/DVN/ZNAKK6) specifies CC0 1.0 for the separate deposit. Article text retains its owners' rights.
 
 ## Adjacent Repositories
 
