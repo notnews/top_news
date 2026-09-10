@@ -24,7 +24,7 @@ An hourly collector of news URLs from eleven sources. URL arrays stay in Git, wi
 
 Historical June 2023 and March 2025 full-text database releases: [doi:10.7910/DVN/ZNAKK6](https://doi.org/10.7910/DVN/ZNAKK6). These have different coverage from the current URL arrays.
 
-Historical counts below describe published releases or the local files identified in the table, not a new full collection. Dataverse metadata requests returned HTTP 403 during cleanup on 2026-09-10; unverified release claims remain labeled as historical documentation.
+Counts describe the releases or local files identified above. Dataverse metadata requests returned HTTP 403 on 2026-09-10, so historical release counts could not all be reverified.
 
 ## Column dictionary
 
@@ -42,9 +42,9 @@ CNN's old feed stopped updating around 2024-07-28; USA Today's around 2023-08-31
 
 Feed failures and empty/malformed documents are logged. A site succeeds if at least one configured feed succeeds; the command exits nonzero only if every requested site fails. A zero-addition success can simply mean all URLs were already present. The corpus grows continuously; the table is a dated baseline.
 
-Obsolete full-text extraction and Google-search notebooks were removed. An exposed Google API credential remains in old Git history and must be revoked by its owner. The later selective rewrite is pending your cleanup merge.
+Obsolete full-text extraction and Google-search notebooks were removed. An exposed Google API credential remains in old Git history and must be revoked by its owner. History pruning removes tracked copies; revocation is still required.
 
-## How collected
+## Collection methods
 
 | Period | Method |
 |---|---|
@@ -53,23 +53,48 @@ Obsolete full-text extraction and Google-search notebooks were removed. An expos
 
 The hourly workflow and package change together. Updates are serialized, stage only URL arrays, and rebase before pushing. Pull-request CI ignores URL-only changes; scheduled CI still checks dependency drift.
 
-The pre-cleanup implementation is preserved at [0593b5efa09bea5fd08986619c191b6abeb935de](https://github.com/notnews/top_news/tree/0593b5efa09bea5fd08986619c191b6abeb935de). New fetches write checkpoints under `data/`; reruns skip successful records and retry failures. Pure parsers read saved responses without accessing the network. Fixture provenance is in [tests/fixtures/SOURCES.md](tests/fixtures/SOURCES.md).
+The pre-cleanup implementation is preserved at [0593b5efa09bea5fd08986619c191b6abeb935de](https://github.com/notnews/top_news/tree/0593b5efa09bea5fd08986619c191b6abeb935de). The collector updates the root `*_urls.json` arrays atomically; reruns deduplicate against the saved URLs. Pure parsers read saved responses without accessing the network. Fixture provenance is in [tests/fixtures/SOURCES.md](tests/fixtures/SOURCES.md).
 
 ## Usage
 
-Python 3.12 or later and [uv](https://docs.astral.sh/uv/) are required.
+Python 3.12 or later and [uv](https://docs.astral.sh/uv/) are required. Run these commands from the repository root. Keep downloaded inputs and generated files under ignored `data/`.
+
+### Install
 
 ```sh
 uv sync --frozen --group dev
+```
+
+### Collect
+
+```sh
 uv run top-news update
 uv run top-news update --site cnn
+```
+
+### Convert
+
+```sh
 uv run top-news to-parquet --out data/urls.parquet
+```
+
+### Upload
+
+The `upload` command reads `DATAVERSE_API_TOKEN` from the environment and adds the specified file to Dataverse. It does not publish a dataset version.
+
+```sh
 uv run top-news upload data/urls.parquet
 ```
 
-Run `make check` for Ruff, formatting, pytest, and pre-commit. `make ci-docker` runs lint and tests in standard Python 3.12 and 3.14 Docker images. CI uses the same lockfile and checks. Large inputs and generated data belong under ignored `data/`, not in Git.
+## Development
 
-The `upload` command reads `DATAVERSE_API_TOKEN` from the environment and adds the specified file to Dataverse. It does not publish a dataset version. Cleanup does not upload or replace any remote data.
+Run the local checks:
+
+```sh
+make check
+```
+
+This runs Ruff, formatting, pytest, and pre-commit. Run `make ci-docker` to check lint and tests in standard Python 3.12 and 3.14 Docker images. CI uses the same lockfile and checks. Install the Git hooks with `uv run pre-commit install`.
 
 ## Citation
 
@@ -79,7 +104,7 @@ Use [CITATION.cff](CITATION.cff) and cite the relevant [Dataverse release](https
 
 Code is [MIT licensed](LICENSE). URL data are CC BY 4.0, as specified by the original citation metadata; see [the license terms](https://creativecommons.org/licenses/by/4.0/). Article text retains its owners' rights.
 
-## 🔗 Adjacent Repositories
+## Adjacent Repositories
 
 - [notnews/good_nyt](https://github.com/notnews/good_nyt) — Patterns in NYT production from 1987 to 2007
 - [notnews/fox_news_transcripts](https://github.com/notnews/fox_news_transcripts) — Fox News Transcripts 2003--2025
