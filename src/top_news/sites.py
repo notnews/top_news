@@ -1,6 +1,13 @@
 """Feed sources used by the hourly collector."""
 
 SITES = {
+    "dw": {"kind": "rss", "urls": ["https://rss.dw.com/rdf/rss-en-all"]},
+    "aljazeera": {"kind": "rss", "urls": ["https://www.aljazeera.com/xml/rss/all.xml"]},
+    "guardian": {"kind": "rss", "urls": ["https://www.theguardian.com/us/rss"]},
+    "bbc": {
+        "kind": "rss",
+        "urls": ["https://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml"],
+    },
     "abc": {
         "kind": "rss",
         "urls": [

@@ -4,7 +4,7 @@ description = "Scraper and provenance record for the top_news corpus"
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
-authors = [{ name = "Gaurav Sood", email = "gsood07@gmail.com" }]
+authors = [{ name = "Derek Willis" }, { name = "Gaurav Sood", email = "contact@gsood.com" }]
 keywords = ["news", "corpus", "scraping", "parquet"]
 requires-python = ">=3.12"
 version = "1.0.0"
