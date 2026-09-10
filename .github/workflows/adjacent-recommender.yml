@@ -1,0 +1,30 @@
+name: Find Adjacent Repositories
+
+on:
+  schedule:
+    - cron: '0 5 * * 0'   # Every Sunday at 5am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  recommend-repos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+
+      - name: Adjacent Repositories Recommender
+        uses: gojiplus/adjacent@ab14392f3ccd0179ee0f8a995748b3b5485b6e36 # v1.4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # ✅ Pass the required token
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add README.md
+          git commit -m "Update adjacent repositories [automated]" || echo "No changes to commit"
+          git push
