@@ -42,7 +42,7 @@ CNN's old feed stopped updating around 2024-07-28; USA Today's around 2023-08-31
 
 Feed failures and empty/malformed documents are logged. A site succeeds if at least one configured feed succeeds; the command exits nonzero only if every requested site fails. A zero-addition success can simply mean all URLs were already present. The corpus grows continuously; the table is a dated baseline.
 
-Obsolete full-text extraction and Google-search notebooks were removed. An exposed Google API credential remains in old Git history and must be revoked by its owner. History pruning removes tracked copies; revocation is still required.
+Obsolete full-text extraction and Google-search notebooks were removed. An exposed Google API credential was removed from branch history and must still be revoked by its owner; old clones and cached copies may retain it.
 
 ## Collection methods
 
@@ -53,7 +53,7 @@ Obsolete full-text extraction and Google-search notebooks were removed. An expos
 
 The hourly workflow and package change together. Updates are serialized, stage only URL arrays, and rebase before pushing. Pull-request CI ignores URL-only changes; scheduled CI still checks dependency drift.
 
-The pre-cleanup implementation is preserved at [0593b5efa09bea5fd08986619c191b6abeb935de](https://github.com/notnews/top_news/tree/0593b5efa09bea5fd08986619c191b6abeb935de). The collector updates the root `*_urls.json` arrays atomically; reruns deduplicate against the saved URLs. Pure parsers read saved responses without accessing the network. Fixture provenance is in [tests/fixtures/SOURCES.md](tests/fixtures/SOURCES.md).
+The pre-cleanup implementation is preserved at [44d7cfd9d7dbb4e5b26e7efcc0db0065bb6130c5](https://github.com/notnews/top_news/tree/44d7cfd9d7dbb4e5b26e7efcc0db0065bb6130c5). The collector updates the root `*_urls.json` arrays atomically; reruns deduplicate against the saved URLs. Pure parsers read saved responses without accessing the network. Fixture provenance is in [tests/fixtures/SOURCES.md](tests/fixtures/SOURCES.md).
 
 ## Usage
 
