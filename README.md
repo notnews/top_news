@@ -117,3 +117,13 @@ Code is [MIT licensed](LICENSE). The URL collection in this repository is CC BY 
 - [notnews/uk_not_news](https://github.com/notnews/uk_not_news) — Not News: Provision of Apolitical News in the British News Media
 - [notnews/nbc_transcripts](https://github.com/notnews/nbc_transcripts) — NBC-hosted MSNBC transcripts 2008--2014
 - [notnews/hard_news](https://github.com/notnews/hard_news) — The Softening of Network Television News
+
+## 🔗 Adjacent Repositories
+
+- [notnews/good_nyt](https://github.com/notnews/good_nyt) — Patterns in NYT production from 1987 to 2007
+- [notnews/nbc_transcripts](https://github.com/notnews/nbc_transcripts) — NBC-hosted MSNBC transcripts 2008–2014
+- [notnews/fox_news_transcripts](https://github.com/notnews/fox_news_transcripts) — Fox News Transcripts 2003--2025
+- [notnews/msnbc_transcripts](https://github.com/notnews/msnbc_transcripts) — MSNBC Transcripts: 2008–2022
+- [notnews/vandy_tv_news_abstracts](https://github.com/notnews/vandy_tv_news_abstracts) — TV News Abstracts and Metadata from Vanderbilt TV News Archive
+
+✨ _Powered by [Adjacent](https://github.com/gojiplus/adjacent)_ 🚀
