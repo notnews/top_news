@@ -17,9 +17,9 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
 
       - name: Adjacent Repositories Recommender
-        uses: gojiplus/adjacent@ab14392f3ccd0179ee0f8a995748b3b5485b6e36 # v1.4
+        uses: gojiplus/adjacent@374383b176c74992693f775482df95a1122cc010 # v2.1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}  # ✅ Pass the required token
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit and push changes
         run: |
